@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <commonhead th:replace="~{header :: commonhead}"></commonhead>
+</head>
+<body>
+    <nav th:replace="~{header :: header}"></nav>
+    <div class="layui-body layui-tab-content site-demo site-demo-body" >
+        <div class="layui-carousel" id="test1">
+            <div carousel-item>
+                <div><img src="page/image/index/db.png"></div>
+                <div><img src="page/image/index/encode.jpg"></div>
+                <div><img src="page/image/index/maven.png"></div>
+                <div><img src="page/image/index/powershell.png"></div>
+                <div><img src="page/image/index/dic.png"></div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">
+                作者心语
+                <i class="layui-icon layui-icon-tips" lay-tips="要支持的噢" lay-offset="5"></i>
+            </div>
+            <div class="layui-card-body layui-text layadmin-text">
+                <p>负霜华，行世路</p>
+                <p>问灵十三载，等一不归人</p>
+                <p>终是一坛天子笑，此生不悔入魔道</p>
+                <p>我想带一人，回云深不知处，带回去，藏起来</p>
+                <p>—— 陈情令</p>
+            </div>
+        </div>
+        <!--<ul class="layui-timeline">
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">9月22日</h3>
+                    <p>
+                        POWERSHELL
+                        <br>远程阈值测试
+                    </p>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">8月29日</h3>
+                    <p>
+                        数据库
+                        <br>表字段转换实体类
+                    </p>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">8月28日</h3>
+                    <p>
+                        数据库
+                        <br>表结构下载
+                    </p>
+                </div>
+            </li>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <div class="layui-timeline-title">过去</div>
+                </div>
+            </li>
+        </ul>-->
+    </div>
+    <script>
+        layui.use('carousel', function(){
+            var carousel = layui.carousel;
+            //建造实例
+            carousel.render({
+                elem: '#test1'
+                ,width: '100%' //设置容器宽度
+                ,height:'400px'
+                ,interval: 1800
+                ,arrow: 'always' //始终显示箭头
+            });
+        });
+    </script>
+</body>
+</html>

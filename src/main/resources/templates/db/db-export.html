@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <commonhead th:replace="~{header :: commonhead}"></commonhead>
+    <script th:src="@{/page/js/db/db-export.js}"></script>
+</head>
+<body>
+<nav th:replace="~{header :: header}"></nav>
+<div class="layui-body layui-tab-content site-demo site-demo-body" >
+    <div class="layui-row" style="height: calc(100% - 104px);overflow-y: auto">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">数据库IP</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="ip" required  lay-verify="required" placeholder="数据库IP" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">端口</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="port" required  lay-verify="required" placeholder="端口" autocomplete="off" class="layui-input" value="1521">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">实例</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="serviceId" required  lay-verify="required" placeholder="实例" autocomplete="off" class="layui-input" value="orcl">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="username" required  lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="password" required  lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">指定表</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="designatedTableName"  placeholder="指定表" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">表前缀</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="designatedTablePrefix"  placeholder="表前缀" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">表后缀</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="designatedTableSuffix"  placeholder="表后缀" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">忽略指定表</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="ignoreTableName"   placeholder="忽略指定表" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">忽略表前缀</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="ignoreTablePrefix"   placeholder="忽略表前缀" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">忽略表后缀</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="ignoreTableSuffix"  placeholder="忽略表后缀" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">版本</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="version" required  lay-verify="required" placeholder="版本" autocomplete="off" class="layui-input" value="1.0.0">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">数据库</label>
+                    <div class="layui-input-block">
+                        <select name="type" lay-verify="required">
+                            <option value="ORACLE">ORACLE</option>
+                            <option value="MYSQL">MYSQL</option>
+                            <option value="CLICKHOUSE">CLICKHOUSE</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">输出类型</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="fileType" value="HTML" title="HTML">
+                        <input type="radio" name="fileType" value="WORD" title="WORD" checked>
+                        <input type="radio" name="fileType" value="MD" title="MD" >
+                    </div>
+                </div>
+
+            </div>
+            <div class="layui-form-item layui-form-text layui-col-md10">
+                <label class="layui-form-label">描述</label>
+                <div class="layui-input-block">
+                    <textarea name="desc" placeholder="描述" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item layui-col-md10">
+                <label class="layui-form-label">输出地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="dest" required  lay-verify="required" placeholder="输出地址" autocomplete="off" class="layui-input" value="C:\Users\月月\Desktop">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

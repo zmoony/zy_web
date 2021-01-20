@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <commonhead th:replace="~{header :: commonhead}"></commonhead>
+    <script th:src="@{/page/js/day/pic-util.js}"></script>
+</head>
+<body>
+<nav th:replace="~{header :: header}"></nav>
+<div class="layui-body layui-tab-content site-demo site-demo-body">
+    <div style="margin-top: -10px" class="layui-tab layui-tab-brief"
+         lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">图片数据流转换</li>
+            <li>图片base64查看</li>
+            <li>图片压缩</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show"
+                 style="background-color: #F2F2F2;">
+                <div class="layui-col-md4" style="float: left;">
+                    <div class="layui-upload">
+                        <div class="layui-row layui-col-space1">
+                            <form class="layui-form" >
+                                <div class="layui-inline">
+                                    <input type="radio" name="fileType" lay-filter="fileType"  value="1" title="本地图片" checked="">
+                                    <input type="radio" name="fileType" lay-filter="fileType" value="2" title="网络图片">
+                                </div>
+                                <div id="localpic">
+                                    <!--<button type="button" class="layui-btn"
+                                            id="test1"><i
+                                            class="layui-icon layui-icon-upload"></i>上传文件
+                                    </button>-->
+                                    <div class="layui-upload-drag" id="test2">
+                                        <i class="layui-icon layui-icon-upload-drag"></i>
+                                        <p>点击上传，或将文件拖拽到此处</p>
+                                        <div class="layui-hide" id="uploadDemoView">
+                                            <hr>
+                                            <img src="" alt="上传成功后渲染" style="max-width: 196px">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="onlinepic" style="display: none" class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <div class="layui-input-inline" style="width: 15rem">
+                                            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入url" class="layui-input"
+                                                   value="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604568359435&di=29d62fbd42c67314711617ef09c4f0c6&imgtype=0&src=http%3A%2F%2Ffile01.16sucai.com%2Fd%2Ffile%2F2013%2F0617%2F20130617104626550.jpg">
+                                        </div>
+                                        <button type="button" id="submitpic" class="layui-btn"  >提交</button>
+                                    </div>
+                                    <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;max-width: 20rem">
+                                        预览图：
+                                        <div class="layui-upload-list" id="demo2">
+                                            <img id="preload" style="width: 100%;height: 100%" alt="预览图片" class="layui-upload-img">
+                                        </div>
+                                    </blockquote>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md8" style="float: right;">
+                    <form class="layui-form layui-form-pane" >
+                        <fieldset class="layui-elem-field site-demo-button" style="border-width: 0px">
+                            <div class="layui-btn-group">
+                                <button id="base" title="图片base64" type="button" class="layui-btn layui-btn-normal">图片base64</button>
+                                <button id="byte" title="图片字节流" type="button" class="layui-btn layui-btn-warm">图片字节流</button>
+                            </div>
+                            <i style="float: right;cursor: pointer;font-size: 26px;" title="全选" class="layui-icon layui-icon-list out"></i>
+                        </fieldset>
+                        <div class="layui-form-item layui-form-text">
+                            <div class="layui-input-block">
+                                <pre id="dest" placeholder="show time" class="layui-textarea" style="height: 450px;overflow-y: auto"></pre>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="layui-tab-item ">
+                <form class="layui-form layui-form-pane" style="width: 48%;float: left">
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">输入图片base64
+                            <i style="float: right;cursor: pointer;font-size: 26px;" title="全选" class="layui-icon layui-icon-list out"></i>
+                            <i style="float: right;cursor: pointer;font-size: 20px;" title="运行" class="layui-icon layui-icon-play"></i>
+                        </label>
+                        <div class="layui-input-block">
+                            <textarea id="src" placeholder="请输入内容" class="layui-textarea" style="height: 450px;overflow-y: auto"></textarea>
+                        </div>
+                    </div>
+                </form>
+                <form class="layui-form layui-form-pane" style="width: 50%;float:right;">
+                    <img id="base64pic" src="">
+                </form>
+            </div>
+            <div class="layui-tab-item ">
+                <div class="layui-col-md4" style="float: left;">
+                    <div class="layui-upload">
+                        <div class="layui-row layui-col-space1">
+                            <form class="layui-form" >
+                                <div class="layui-inline">
+                                    <input type="radio" name="fileType2" lay-filter="fileType2"  value="1" title="本地图片" checked="">
+                                    <input type="radio" name="fileType2" lay-filter="fileType2" value="2" title="网络图片">
+                                </div>
+                                <div id="oldpic">
+                                    <div class="layui-upload-drag" id="test3">
+                                        <i class="layui-icon layui-icon-upload-drag"></i>
+                                        <p>点击上传，或将文件拖拽到此处</p>
+                                        <div class="layui-hide" id="uploadDemoView1">
+                                            <hr>
+                                            <img src="" alt="上传成功后渲染" style="max-width: 196px">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="onlinepic1" style="display: none" class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <div class="layui-input-inline" style="width: 15rem">
+                                            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入url" class="layui-input"
+                                                   value="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1604568359435&di=29d62fbd42c67314711617ef09c4f0c6&imgtype=0&src=http%3A%2F%2Ffile01.16sucai.com%2Fd%2Ffile%2F2013%2F0617%2F20130617104626550.jpg">
+                                        </div>
+                                        <button type="button" id="submitpic1" class="layui-btn"  >提交</button>
+                                    </div>
+                                    <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;max-width: 20rem">
+                                        预览图：
+                                        <div class="layui-upload-list" id="demo3">
+                                            <img id="preload1" style="width: 100%;height: 100%" alt="预览图片" class="layui-upload-img">
+                                        </div>
+                                    </blockquote>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md8" style="float: right;">
+                    <form class="layui-form layui-form-pane" >
+                        <fieldset class="layui-elem-field site-demo-button" style="border-width: 0px">
+                            <div class="layui-btn-group">
+                                <button id="resize" title="图片压缩" type="button" class="layui-btn layui-btn-normal">压缩</button>
+                                <button id="download" title="图片下载" type="button" class="layui-btn layui-btn-danger" style="display: none">下载</button>
+                            </div>
+                            <span id="oldsize" class="layui-word-aux">0B</span>
+                            <span id="newsize" class="layui-word-aux">0B</span>
+                        </fieldset>
+                        <div class="layui-form-item layui-form-text">
+                            <div class="layui-input-block">
+                                <img id="compactionpic" style=" width: 20rem;height: 30rem;display: none" src="">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--模态框-->
+<div id="resizeboot" style="display: none">
+    <form class="layui-form" >
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">指定宽度</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="width" lay-verify="number" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">指定高度</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="height" id="height" lay-verify="number"  autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">指定压缩比例（优先）</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="scale" lay-verify="number" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="button" class="layui-btn" id="resizeSubmit">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

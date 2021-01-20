@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <commonhead th:fragment="common_head">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>逐渐完善的工具页面</title>
+        <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
+        <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+        <link rel="stylesheet" th:href="@{/page/css/header.css}">
+        <link rel="stylesheet" th:href="@{/plugin/alert/toastr.min.css}">
+        <script th:src="@{/layui/layui.js}"></script>
+        <script th:src="@{/plugin/jquery.3.2.1.min.js}"></script>
+        <script th:src="@{/plugin/moment.js}"></script>
+        <script th:src="@{/page/js/header.js}"></script>
+        <script th:src="@{/page/js/util/Common.js}"></script>
+        <script th:src="@{/plugin/alert/toastr.min.js}"></script>
+        <script th:src="@{/plugin/jquery.base64.js}"></script>
+    </commonhead>
+
+</head>
+<body>
+    <nav th:fragment="header">
+        <div class="layui-header header header-demo" summer="">
+            <p class="logo">工具集</p>
+            <div class="layui-form component" lay-filter="LAY-site-header-component">
+                <select lay-search lay-filter="component" >
+                    <option th:each="cache:${urlCache}" th:value="${cache.key}" th:text="${cache.value}"></option>
+                </select>
+            </div>
+            <ul class="layui-nav" lay-filter="">
+                <li class="layui-nav-item layui-this"><a href="/util">工具</a></li>
+                <li class="layui-nav-item"><a href="/plugin/index">插件研究</a></li>
+                <li class="layui-nav-item"><a target="_blank" th:href="${bigdataUrl}">大数据</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">周边</a>
+                    <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                        <dd><a target="_blank" href="https://www.e-iceblue.cn/content/docjava-table.html">Spire</a></dd>
+                        <dd><a target="_blank" href="http://deepoove.com/jmh-visual-chart/">JMH</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree site-demo-nav">
+                    <li class="layui-nav-item layui-nav-itemed layui-this">
+                        <a href="/util">首页</a>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="javascript:;" href="javascript:;">数据库工具<span class="layui-nav-more"></span></a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="/db/export">表结构导出</a>
+                            </dd>
+                            <dd class="">
+                                <a href="/db/transform">表与JAVABEAN的转换</a>
+                            </dd>
+                        </dl>
+                    </li>
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="javascript:;" href="javascript:;">日常小工具<span class="layui-nav-more"></span></a>
+                        <dl class="layui-nav-child">
+                            <dd class="">
+                                <a href="/common/util">常规工具</a>
+                            </dd>
+                            <dd class="">
+                                <a href="/maven/local">MAVEN本地仓库管理</a>
+                            </dd>
+                            <dd class="">
+                                <a href="/ps/util">PowerShell工具</a>
+                            </dd>
+                            <dd class="">
+                                <a href="/pic/util">图片工具</a>
+                            </dd>
+                            <dd class="">
+                                <a href="/encode/util">编码工具</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item ">
+                        <a class="javascript:;" href="javascript:;">数据字典<span class="layui-nav-more"></span></a>
+                        <dl class="layui-nav-child">
+                            <dd class="">
+                                <a href="/ascii/dic">ASCII码字典</a>
+                            </dd>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item" style="height: 30px; text-align: center"></li>
+                    <span class="layui-nav-bar" style="top: 232.5px; height: 0px; opacity: 0;"></span></ul>
+                <ul class="layui-nav layui-nav-tree site-demo-nav">
+                    <li class="layui-nav-item layui-nav-itemed layui-this">
+                        <a href="/plugin/index">简介</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="javascript:;" href="javascript:;">树形结构<span class="layui-nav-more"></span></a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="/plugin/jstree">jstree</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="javascript:;" href="javascript:;">文件上传<span class="layui-nav-more"></span></a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="/plugin/webUploader">Web Uploader</a>
+                            </dd>
+                        </dl>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-footer footer footer-demo">
+            <div class="layui-main">
+                <p>© 2020  zmoony license</p>
+            </div>
+        </div>
+
+    </nav>
+
+</body>
+</html>
