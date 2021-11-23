@@ -3,15 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <commonhead th:replace="~{header :: commonhead}"></commonhead>
+    <!--codemirror-->
+    <link rel="stylesheet" th:href="@{/plugin/codemirror/lib/codemirror.css}">
+    <script th:src="@{/plugin/codemirror/lib/codemirror.js}"></script>
+    <!--代码折叠-->
+    <link rel="stylesheet"
+          th:href="@{/plugin/codemirror/addon/fold/foldgutter.css}">
+    <!--sql语言-->
+    <script th:src="@{/plugin/codemirror/mode/sql/sql.js}"></script>
+    <!--代码高亮-->
+    <link rel="stylesheet"
+          th:href="@{/plugin/codemirror/addon/hint/show-hint.css}">
+    <script th:src="@{/plugin/codemirror/addon/hint/show-hint.js}"></script>
+    <!--sql提示-->
+    <script th:src="@{/plugin/codemirror/addon/hint/sql-hint.js}"></script>
+    <!--快捷键定义-->
+    <script th:src="@{/plugin/codemirror/mode/sql/sql-formatter.js}"></script>
+    <!--json格式化-->
+    <link rel="stylesheet" th:href="@{/plugin/json-viewer/json-viewer.css}">
+    <script th:src="@{/plugin/json-viewer/json-viewer.js}"></script>
+    <!--自定义-->
     <script th:src="@{/page/js/db/db-transform.js}"></script>
+
+    <style>
+        .element-base {
+            flex: 1;
+            margin: 0px 7.5px;
+        }
+        .CodeMirror {
+            border: 1px solid #eee;
+            min-height: 100%;
+        }
+        /*    表单换行*/
+        #databaseForm .layui-input-block {
+            margin-left: 0px;
+        }
+        #databaseForm .layui-form-label {
+             float: none;
+             text-align: left;
+        }
+        #databaseForm .layui-form-item {
+             margin-bottom: -1px;
+        }
+    </style>
 </head>
 <body>
 <nav th:replace="~{header :: header}"></nav>
 <div class="layui-body layui-tab-content site-demo site-demo-body" >
     <div style="margin-top: -10px" class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
         <ul class="layui-tab-title">
-            <li class="layui-this">建表语句/JSON</li>
+            <li class="layui-this">转换JAVABEAN</li>
             <li>查询语句</li>
+            <li>在线SQL</li>
         </ul>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
@@ -127,6 +170,97 @@
                         </div>
                         <div id="ddl2" style="height: 240px;overflow-y: auto;"></div>
                     </form>
+
+                </div>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-row" style="height: calc(100% - 104px);overflow-y: auto;display: flex;">
+                    <div id="database" class="element-base"
+                         style="flex:none;border: 1px solid rgba(0,0,0,.125);border-radius: .25rem;padding: 15px;">
+                        <i class="layui-icon layui-icon-prev"
+                           style="float: right;cursor: pointer" title="展开"></i>
+                        <form id="databaseForm" class="layui-form" action="" style="float: left;margin-top: -10px;">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">数据库类型</label>
+                                <div class="layui-input-block">
+                                    <select name="databaseType" lay-verify="required">
+                                        <option value="oracle">oracle</option>
+                                        <option value="clickhouse">clickhouse</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">IP</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="databaseIp" required  lay-verify="required" placeholder="IP地址" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">端口</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="databasePort" required  lay-verify="required" placeholder="端口" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label" style="float: left;">默认数据库</label>
+                                <div class="layui-form-mid layui-word-aux">oracle填写实例</div>
+                                <div class="layui-input-block">
+                                    <input type="text" name="databaseSid" required  lay-verify="required" placeholder="默认数据库" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">用户名</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="databaseUname" required  lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="databasePwd" required lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item" style="margin-top: 10px;">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit lay-filter="databaseForm">连接</button>
+                                    <button class="layui-btn layui-btn-normal">测试连接</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div id="sql" class="element-base">
+                        <div class="card" style="height: 100%">
+                            <div class="card-header" >
+                                <h4 class="card-title" style="margin-bottom: 0px">
+                                    <button id="run" class="btn btn-primary"><i class="icon-control-play"></i>执行</button>
+                                    <button id="clear" class="btn btn-warning"><i class="icon-reload"></i>清空</button>
+                                    <button id="formatter" class="btn btn-success" title="快捷键：Ctrl-Alt-L"><i class="icon-social-foursqare"></i>格式化</button>
+                                    <span id="databaseQuickConn" style=" font-size: 1rem;margin-left: 1rem;cursor: pointer">
+                                    <i class="fas fa-key" style="color: #e0a800"></i>
+                                    <span id="db_name">点击连接数据库</span>
+                                </span>
+
+                                </h4>
+                            </div>
+                            <div class="card-body" style="padding :0px;">
+                                <div class="tab-content mt-2 mb-3"
+                                     style="height: 100%;margin: 0px !important;">
+                                    <textarea id="sqlEditor"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div  class="element-base">
+                        <div class="card" style="height: 100%">
+                            <div class="card-body" style="overflow: auto;">
+                                <div id="sqlResult" class="tab-content mt-2 mb-3">
+                                    sql查询结果
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

@@ -20,7 +20,7 @@ public class DataCache {
     static {
         urlCache.put("","搜索组件或模块");
         urlCache.put("/db/export","表结构导出");
-        urlCache.put("/db/transform","表与JAVABEAN的转换");
+        urlCache.put("/db/transform","数据库常用工具");
         urlCache.put("/common/util","常规工具");
         urlCache.put("/maven/local","MAVEN本地仓库管理");
         urlCache.put("/ps/util","PowerShell工具");

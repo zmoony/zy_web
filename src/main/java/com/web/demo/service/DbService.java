@@ -84,8 +84,8 @@ class ScrewApplication {
         // 生成文件配置
         EngineConfig engineConfig = EngineConfig.builder()
                 // 生成文件路径，自己mac本地的地址，这里需要自己更换下路径
-                .fileOutputDir(FileSystemView.getFileSystemView() .getHomeDirectory().getAbsolutePath())
-//                .fileOutputDir(vo.getDest())
+//                .fileOutputDir(FileSystemView.getFileSystemView() .getHomeDirectory().getAbsolutePath())
+                .fileOutputDir(vo.getDest())
                 // 打开目录
                 .openOutputDir(false)
                 // 文件类型

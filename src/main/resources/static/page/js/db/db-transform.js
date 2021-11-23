@@ -98,4 +98,19 @@ layui.use(['form','jquery'], function(){
         formAjax(data,$("#ddl2"));
         return false;
     });
+
+
+    //事件绑定
+    ("body").on("click", ".fas.fa-angle-double-left", function () {
+        $("#databaseForm").hide(250);
+        $(this).addClass("fa-angle-double-right");
+        $(this).removeClass("fa-angle-double-left");
+        $(this).attr("title", "展开");
+    });
+    $("body").on("click", ".fas.fa-angle-double-right", function () {
+        $("#databaseForm").show(250);
+        $(this).removeClass("fa-angle-double-right");
+        $(this).addClass("fa-angle-double-left");
+        $(this).attr("title", "收起");
+    });
 });
