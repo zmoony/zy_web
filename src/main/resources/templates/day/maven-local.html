@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <commonhead th:replace="~{header :: commonhead}"></commonhead>
+</head>
+<body>
+<nav th:replace="~{header :: header}"></nav>
+<div class="layui-body layui-tab-content site-demo site-demo-body" >
+    <div class="layui-row" style="height: calc(100% - 104px);overflow-y: auto">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">本地仓库</label>
+                <div class="layui-input-block">
+                    <input type="text" name="local" required  lay-verify="required" placeholder="本地仓库" autocomplete="off" class="layui-input" value="D:\project\maven\.m2\repository">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">groupId</label>
+                <div class="layui-input-block">
+                    <input type="text" name="groupId" required  lay-verify="required" placeholder="groupId" autocomplete="off" class="layui-input" value="wiscom">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">artifactId</label>
+                <div class="layui-input-block">
+                    <input type="text" name="artifactId" required  lay-verify="required" placeholder="artifactId" autocomplete="off" class="layui-input" value="arcgis-java">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">version</label>
+                <div class="layui-input-block">
+                    <input type="text" name="version" required  lay-verify="required" placeholder="version" autocomplete="off" class="layui-input" value="10.2">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">JAR位置</label>
+                <div class="layui-input-block">
+                    <input type="text" name="file" required  lay-verify="required" placeholder="JAR位置" autocomplete="off" class="layui-input" value="E:\wiscom\资料\map\arcobjects.jar">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label ">DDL</label>
+                <div class="layui-input-block">
+                    <textarea name="ddl" placeholder="MVN语句" class="layui-textarea"></textarea>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">生成</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+    <script>
+        layui.use(['form','jquery'], function(){
+            var form = layui.form;
+            var $ = layui.jquery;
+            //监听提交
+            form.on('submit(formDemo)', function(data){
+                let r = data.field;
+                $("textarea[name='ddl']").html("").html(
+                    "mvn install:install-file -Dmaven.repo.local="+r.local+" " +
+                    "-DgroupId="+r.groupId+"" +
+                    " -DartifactId="+r.artifactId+" " +
+                    "-Dversion="+r.version+" " +
+                    "-Dpackaging=jar " +
+                    "-Dfile=\""+r.file+"\"");
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

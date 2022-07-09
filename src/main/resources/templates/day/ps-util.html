@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <commonhead th:replace="~{header :: commonhead}"></commonhead>
+    <script th:src="@{/page/js/day/ps-util.js}"></script>
+</head>
+<body>
+<nav th:replace="~{header :: header}"></nav>
+<div class="layui-body layui-tab-content site-demo site-demo-body" >
+    <div style="margin-top: -10px" class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">语句发送阈值</li>
+            <li>待配置</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <div class="layui-row" style="height: calc(100% - 104px);overflow-y: auto">
+                    <form  class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-inline ">
+                                <label class="layui-form-label">远程IP</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="host_ip" required  lay-verify="required" placeholder="远程IP" autocomplete="off" class="layui-input" value="172.17.112.119">
+                                </div>
+                            </div>
+                            <div class="layui-inline ">
+                                <label class="layui-form-label">用户名</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="username" required  lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input" value="administrator">
+                                </div>
+                            </div>
+                            <div class="layui-inline ">
+                                <label class="layui-form-label">密码</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="password" required  lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input" value="wiscom123!">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text layui-col-md11">
+                            <label class="layui-form-label">命令行</label>
+                            <div class="layui-input-block">
+                                <textarea  style="min-height: 150px;" name="command" placeholder="powershell" class="layui-textarea" ></textarea>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="formDemo">发送</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                <i style="margin-left: 20px;" class="layui-icon layui-icon-file-b">0kb</i>
+                            </div>
+                        </div>
+                        <div id="ddl" style="height: 240px;overflow-y: auto;"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-row" style="height: calc(100% - 104px);overflow-y: auto">
+                    开发中...
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <commonhead th:replace="~{header :: commonhead}"></commonhead>
+    <!--codemirror-->
+    <link rel="stylesheet" th:href="@{/plugin/codemirror/lib/codemirror.css}">
+    <script th:src="@{/plugin/codemirror/lib/codemirror.js}"></script>
+    <!--代码折叠-->
+    <link rel="stylesheet"
+          th:href="@{/plugin/codemirror/addon/fold/foldgutter.css}">
+    <!--sql语言-->
+    <script th:src="@{/plugin/codemirror/mode/sql/sql.js}"></script>
+    <!--代码高亮-->
+    <link rel="stylesheet"
+          th:href="@{/plugin/codemirror/addon/hint/show-hint.css}">
+    <script th:src="@{/plugin/codemirror/addon/hint/show-hint.js}"></script>
+    <!--sql提示-->
+    <script th:src="@{/plugin/codemirror/addon/hint/sql-hint.js}"></script>
+    <!--快捷键定义-->
+    <script th:src="@{/plugin/codemirror/mode/sql/sql-formatter.js}"></script>
+    <!--json格式化-->
+    <link rel="stylesheet" th:href="@{/plugin/json-viewer/json-viewer.css}">
+    <script th:src="@{/plugin/json-viewer/json-viewer.js}"></script>
+    <script src="/page/js/db/db-websql2.js"></script>
+</head>
+<body>
+    <nav th:replace="~{header :: header}"></nav>
+    <div class="layui-body layui-tab-content site-demo site-demo-body" >
+      <div style="margin-top: -10px" class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+          <ul class="layui-tab-title">
+            <li class="layui-this">数据源管理</li>
+            <li>SQL查询</li>
+            <li>SQL列表</li>
+            <li>作业管理</li>
+          </ul>
+          <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">连接名:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="dbname" id="dbname" placeholder="请输入连接名" class="layui-input">
+                        </div>
+                        <label class="layui-form-label">登录账号:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="dbaccount" id="dbaccount" placeholder="请输入登录账号" class="layui-input">
+                        </div>
+                        <label class="layui-form-label">连接地址:</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="dburl" id="dburl" placeholder="请输入连接地址" class="layui-input">
+                        </div>
+                        <div class="layui-input-normal">
+                            <button class="layui-btn search-btn" table-id="pageGrid" lay-submit="" lay-filter="search">
+                                <i class="fa fa-search"> </i>查询
+                            </button>
+                            <button type="reset" class="layui-btn layui-btn-primary"><i class="fa fa-refresh">&nbsp;</i>重置</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="layui-btn-group">
+                    <button class="layui-btn" onclick="Page.open('添加数据源','dbSource/sourceController/addSourcePage')">
+                        <i class="fa fa-plus">&nbsp;</i>增加
+                    </button>
+                </div>
+                <div class="layui-form nowrap">
+                    <table class="layui-table" id="pageGrid" cyType="pageGrid"  lay-filter="pageGrid" table-id="pageGrid"
+                           cyProps="url:'/dbSource/dbsourceList',checkbox:'false',pageColor:'#2991d9'">
+                        <thead>
+                        <tr>
+                            <th width="5%" param="{name:'id',isPrimary:'true',hide:'false'}">id</th>
+                            <th width="10%" param="{name:'dbname'}">连接名</th>
+                            <th  param="{name:'dburl',width:'20px'}">连接地址</th>
+                            <th width="5%" param="{name:'dbaccount'}">登录账号</th>
+                            <th width="5%" param="{name:'dbpass'}">登录密码</th>
+                            <th width="5%" param="{name:'driverClass'}">驱动地址</th>
+                            <th width="5%" param="{name:'dbtestUrl'}">测试连接</th>
+                            <th width="5%" param="{name:'dbstate',codeName:'state'}">状态</th>
+                            <th width="10%" param="{operate:'true',buttons:'Render.delete'}">
+                                操作
+                            </th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="layui-tab-item"></div>
+            <div class="layui-tab-item"></div>
+            <div class="layui-tab-item"></div>
+          </div>
+      </div>
+    </div>
+
+
+</body>
+</html>

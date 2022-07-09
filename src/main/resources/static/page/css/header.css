@@ -1,0 +1,111 @@
+.header-index{}
+.header-index .site-banner-bg{}
+.header-index[spring]{border: none; background-color: #0D1206}
+.header-index[summer]{border: none; background-color: #0A0E11}
+.header-index[autumn]{border: none; background-color: #100903}
+.header-index[winter]{border: none; background-color: #110F25/*#06041C*/}
+
+.header-demo{height: 60px; border-bottom: none;}
+.header-demo .logo{left: 40px;}
+.header-demo .layui-nav{top: 0;}
+.header-demo .layui-nav .layui-nav-item{margin: 0 10px;}
+
+.header-demo .layui-nav .layui-this a{padding: 0 30px;}
+
+.header{height: 59px; border-bottom: 1px solid #404553;  background-color: #393D49;}
+.header .layui-nav{position: absolute; right: 0; top: 0; padding: 0; background: none;}
+.header .layui-nav .layui-nav-item{margin: 0 20px; }
+.header .layui-nav .layui-nav-item[mobile]{display: none;}
+
+.header .layui-container .logo{left: 15px;}
+.header .layui-container .layui-nav{right: 15px;}
+.header .layui-nav .layui-badge,
+.header .layui-nav .layui-badge-dot{right: 0;}
+
+
+.layui-side-child{width: 160px!important; left: 200px; bottom: 60px!important; border-right: 1px solid #eee; background-color: #fff;}
+.layui-side-child .layui-side-scroll{width: 170px;}
+.layui-side-child .layui-nav{padding: 10px 0; width: 160px; border-radius: 0; background: none}
+.layui-side-child .layui-nav-child{border-radius: 0;}
+.layui-side-child .layui-nav .layui-nav-title a,
+.layui-side-child .layui-nav .layui-nav-title a:hover,
+.layui-side-child .layui-nav-itemed>a{color: #666 !important;}
+.layui-side-child .layui-nav-itemed .layui-nav-child{margin-bottom: 10px; background: none !important;}
+.layui-side-child .layui-nav .layui-nav-item a{height: 30px; line-height: 30px; color: #666;}
+/*.layui-side-child .layui-nav .layui-nav-item a:hover{background: none !important;}*/
+.layui-side-child .layui-nav .layui-nav-child a{color: #999 !important;}
+.layui-side-child .layui-nav .layui-nav-more{display: none;}
+.layui-side-child .layui-nav-tree .layui-this,
+.layui-side-child .layui-nav-tree .layui-this>a,
+.layui-side-child .layui-nav-tree .layui-nav-child dd.layui-this,
+.layui-side-child .layui-nav-tree .layui-nav-child dd.layui-this a{background: none; color: #5FB878 !important;}
+.layui-side-child .layui-nav .layui-nav-child a:hover{color: #009688 !important}
+.layui-side-child .layui-nav-bar{background-color: #5FB878;}
+
+
+.footer{padding: 30px 0; line-height: 30px; text-align: center; color: #666; font-weight: 300;}
+body .layui-layout-admin .footer-demo{height: 50px; line-height: 50px; padding: 5px 0;}
+.footer a{padding: 0 5px;}
+.site-union{color: #999;}
+.site-union>*{display: inline-block; vertical-align: middle;}
+.site-union a[sponsor] img{width: 80px;}
+.site-union span{position: relative; top: 5px;}
+.site-union span a{padding: 0; display: inline; color: #999;}
+.site-union span a:hover{text-decoration: underline;}
+.site-union .site-union-desc{display: block; margin-bottom: 10px;}
+
+.footer-demo p,
+.footer-demo .site-union,
+.footer-demo .site-union p{display: inline-block; vertical-align: middle; padding-right: 10px;}
+.footer-demo .site-union{position: relative; top: -5px;}
+.footer-demo .site-union .site-union-desc{margin-bottom: 0; padding-right: 0;}
+.footer-demo .site-union a[sponsor] img{position: relative; top: 3px;}
+.layui-side{top:60px}
+.header-demo .logo {
+    /* left: 40px; */
+    margin: 0 20px;
+    color: #f2f2f2;
+    vertical-align: middle;
+    line-height: 60px;
+    font-size: 19px;
+    width: 60px;
+    position: absolute;
+    /* z-index: 1; */
+}
+.layui-footer {
+    position: fixed;
+    left: 200px;
+    right: 0;
+    bottom: 0;
+    height: 44px;
+    line-height: 44px;
+    padding: 0 15px;
+    background-color: #eee;
+}
+.layui-body{
+    margin: 80px 10px 0px 10px;
+}
+.component {
+    position: absolute;
+    width: 160px;
+    left: 200px;
+    top: 16px;
+}
+.component .layui-input {
+    background-color: rgba(255,255,255,.05);
+    border: none 0;
+    color: #fff;
+    color: rgba(255,255,255,.5);
+}
+.component .layui-form-select .layui-edge {
+    display: none;
+    border-top-color: #999;
+}
+.zyinput{
+    display: inline;
+    width: 15%;
+    padding-left: 10px;
+}
+.site-demo-nav{
+    display: none;
+}

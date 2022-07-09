@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <commonhead th:replace="~{header :: commonhead}"></commonhead>
+    <!--自定义-->
+    <script th:src="@{/page/js/db/db-transform.js}"></script>
+
+    <style>
+        /*    表单换行*/
+        #databaseForm .layui-input-block {
+            margin-left: 0px;
+        }
+        #databaseForm .layui-form-label {
+             float: none;
+             text-align: left;
+        }
+        #databaseForm .layui-form-item {
+             margin-bottom: -1px;
+        }
+    </style>
+</head>
+<body>
+<nav th:replace="~{header :: header}"></nav>
+<div class="layui-body layui-tab-content site-demo site-demo-body" >
+    <div style="margin-top: -10px" class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">转换JAVABEAN</li>
+            <li>查询语句</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <div class="layui-row" style="height: calc(100% - 104px);overflow-y: auto">
+                    <form  class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-inline ">
+                                <label class="layui-form-label">作者</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="author" required  lay-verify="required" placeholder="作者" autocomplete="off" class="layui-input" value="aurora">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">数据类型</label>
+                                <div class="layui-input-block">
+                                    <select name="type" lay-verify="required" lay-filter="type">
+                                        <option value="DDL">DDL</option>
+                                        <option value="JSON">JSON</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline ">
+                                <label class="layui-form-label">转换规则</label>
+                                <div class="layui-input-block">
+                                    <select name="nameRex" lay-verify="required">
+                                        <option value="camel">驼峰</option>
+                                        <option value="line">下划线</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text layui-col-md11">
+                            <label class="layui-form-label">语句</label>
+                            <div class="layui-input-block">
+                                <textarea  style="min-height: 150px;" name="ddl" placeholder="DDL/JSON" class="layui-textarea" ></textarea>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="formDemo">生成</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                        <div id="ddl" style="height: 15rem;overflow-y: auto;"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-row" style="height: calc(100% - 104px);overflow-y: auto">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">服务器</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="ip" required  lay-verify="required" placeholder="数据库" autocomplete="off" class="layui-input" value="172.17.112.104,1521,orcl">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">用户名</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="username" required  lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">密码</label>
+                                <div class="layui-input-block">
+                                    <input type="password" name="password" required  lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label">表名</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="tableName"  placeholder="表名" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">数据库</label>
+                                <div class="layui-input-block">
+                                    <select name="type" lay-verify="required">
+                                        <option value="ORACLE">ORACLE</option>
+                                        <option value="MYSQL">MYSQL</option>
+                                        <option value="CLICKHOUSE">CLICKHOUSE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline ">
+                                <label class="layui-form-label">转换规则</label>
+                                <div class="layui-input-block">
+                                    <select name="nameRex" lay-verify="required">
+                                        <option value="camel">驼峰</option>
+                                        <option value="line">下划线</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text layui-col-md11">
+                            <label class="layui-form-label">查询语句</label>
+                            <div class="layui-input-block">
+                                <textarea style="min-height: 150px;" name="sql" placeholder="SQL" class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="formDemo2Code">生成代码</button>
+                                <button class="layui-btn" lay-submit lay-filter="formDemo2Json">生成JSON</button>
+                                <button class="layui-btn" lay-submit lay-filter="formDemo2Column">查询列名</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                        <div id="ddl2" style="height: 240px;overflow-y: auto;"></div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

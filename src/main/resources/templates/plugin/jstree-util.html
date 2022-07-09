@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <commonhead th:replace="~{header :: commonhead}"></commonhead>
+    <link rel="stylesheet" th:href="@{/plugin/jstree-3.3.11/themes/default/style.min.css}" />
+    <script th:src="@{/page/js/plugin/jstree-util.js}"></script>
+    <script th:src="@{/plugin/jstree-3.3.11/jstree.min.js}"></script>
+
+</head>
+<body>
+    <nav th:replace="~{header :: header}"></nav>
+    <div class="layui-body layui-tab-content site-demo site-demo-body" style="z-index: 0;">
+        <form class="layui-form">
+            <div class="layui-btn-group">
+                <button id="create" type="button" class="layui-btn layui-btn-sm">
+                    <i class="layui-icon">&#xe654;</i>
+                </button>
+                <button id="rename" type="button" class="layui-btn layui-btn-sm">
+                    <i class="layui-icon">&#xe642;</i>
+                </button>
+                <button id="del" type="button" class="layui-btn layui-btn-sm">
+                    <i class="layui-icon">&#xe640;</i>
+                </button>
+                <button id="moveup" type="button" class="layui-btn layui-btn-sm">
+                    <i class="layui-icon">&#xe619;</i>
+                </button>
+                <button id="movedown" type="button" class="layui-btn layui-btn-sm">
+                    <i class="layui-icon">&#xe61a;</i>
+                </button>
+            </div>
+            <div class="layui-inline">
+                <input id="search_ay" type="text" placeholder="搜索"  class="layui-input">
+            </div>
+        </form>
+        <div id="jstree_demo_div"></div>
+
+    </div>
+</body>
+</html>
