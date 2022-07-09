@@ -3,7 +3,7 @@ package com.web.demo.util;
 /** 
 * @ClassName: StringUtil 
 * @Description: 字符串工具类
-* @author bfan@wiscom.com 
+* @author bfan@yuez.com 
 */  
 public final class StringUtil
 {
